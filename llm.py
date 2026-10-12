@@ -22,7 +22,7 @@ def get_session_history(session_id: str) -> BaseChatMessageHistory:
 
 
 def get_retriever():
-    embedding = UpstageEmbeddings(model="solar-embedding-2-query")
+    embedding = UpstageEmbeddings(model="solar-embedding-2-passage")
     index_name = 'tax-markdown-index'
     database = PineconeVectorStore.from_existing_index(index_name=index_name, embedding=embedding)
     retriever = database.as_retriever(search_kwargs={"k": 4})
@@ -53,7 +53,7 @@ def get_history_retriever():
     return history_aware_retriever
 
 
-def get_llm(model="solar-mini"):
+def get_llm(model="solar-mini4"):
     llm = ChatUpstage(model=model)
     return llm
 
